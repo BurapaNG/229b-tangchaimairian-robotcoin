@@ -1,0 +1,34 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "On foot",
+            "id": "99c00c42-2d52-44c4-947b-2789bb44a5cc",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "52915009-2030-450d-8962-4037fddee0f8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0323fd6f-6618-4d60-a1ef-0355520fb3eb",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
