@@ -8,12 +8,5 @@ public class CoinAttracktor : MonoBehaviour
 
     public float attracktorRange = 5f;
     
-    void FixedUpdate()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attracktorRange);
-        foreach (Collider.CompareTag("coin"))
-        {
-            
-        }
-    }
+    
 }
