@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private bool groundCheck = false;
+    
+
     public float speed = 5.0f;
     public float jumpForce = 5.0f;
     private float horizontalInput;
@@ -26,10 +29,25 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
         transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (groundCheck) 
         {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                groundCheck = false;
+            }
+            
         }
+
         
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            groundCheck = true;
+            
+        }
     }
 }

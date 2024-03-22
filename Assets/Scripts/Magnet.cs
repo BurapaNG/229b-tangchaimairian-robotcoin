@@ -11,7 +11,7 @@ public class Magnet : MonoBehaviour
     void Start()
     {
         coinDectectorObj = GameObject.FindGameObjectWithTag("Coin Detector");
-        coinDectectorObj.SetActive(false);
+        //coinDectectorObj.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +19,7 @@ public class Magnet : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             StartCoroutine(ActivateCoin());
-            Destroy(transform.GetChild(0).gameObject);
+            Destroy(gameObject);
         }
     }
 
