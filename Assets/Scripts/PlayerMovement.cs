@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool groundCheck = false;
     
 
-    public float speed = 5.0f;
-    public float jumpForce = 5.0f;
+    public float speed = 7.0f;
+    public float jumpForce = 6.0f;
     private float horizontalInput;
     private float forwardInput;
 
