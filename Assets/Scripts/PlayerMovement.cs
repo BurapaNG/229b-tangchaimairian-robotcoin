@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private bool groundCheck = false;
 
-    public float speed = 10.0f;
+    public float speed = 20.0f;
     public float jumpForce = 6.0f;
     private float horizontalInput;
     private float forwardInput;
@@ -21,16 +21,13 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+        Vector3 movement = new Vector3(horizontalInput, 0.0f, forwardInput) * speed * Time.deltaTime;
+        playerRb.MovePosition(transform.position + transform.TransformDirection(movement));
 
-        if (groundCheck)
+        if (groundCheck && Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                groundCheck = false;
-            }
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            groundCheck = false;
         }
     }
 
@@ -40,31 +37,5 @@ public class PlayerMovement : MonoBehaviour
         {
             groundCheck = true;
         }
-    }
-
-    private void FixedUpdate()
-    {
-        SmoothMovement();
-    }
-
-    private void SmoothMovement()
-    {
-        // สร้างเวกเตอร์เริ่มต้นที่ชี้ไปด้านล่างของตัวละคร
-        Vector3 downwardDirection = -transform.up;
-
-        // สร้างเรนเดอร์เรียนเสียดทาน
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, downwardDirection, out hit))
-        {
-            // หากเรนเดอร์ชนกับพื้น
-            if (hit.distance < 0.1f) // ใช้ค่าความลื่นตามที่คุณต้องการ
-            {
-                // ปรับตำแหน่งของตัวละครให้เรียบบนพื้น
-                transform.position = new Vector3(transform.position.x, hit.point.y + 0.1f, transform.position.z);
-            }
-        }
-
-        // เคลื่อนที่ตัวละครไปข้างหน้า
-        playerRb.MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
     }
 }
