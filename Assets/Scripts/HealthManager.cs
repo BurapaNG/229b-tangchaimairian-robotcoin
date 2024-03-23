@@ -7,8 +7,8 @@ public class HealthManager : MonoBehaviour
 {
     [SerializeField]
     private UnityEngine.UI.Image _healthBarForegroundImage;
-    public void UpdateHealthBar(healthController healthController)
-    {
-        
-    }
+    //public void UpdateHealthBar(healthController healthController)
+    //{
+        //_healthBarForegroundImage.
+   // }
 }
