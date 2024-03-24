@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RotateObject : MonoBehaviour
 {
-    public float spinSpeed = 20f; // ความเร็วในการหมุน
+    public Vector3 initialRotationSpeed = new Vector3(0, 0, 0); // ความเร็วเริ่มต้นในแต่ละแกน
 
     private Rigidbody rb;
 
@@ -15,25 +15,22 @@ public class RotateObject : MonoBehaviour
         }
         else
         {
-            rb.angularVelocity = Random.insideUnitSphere * spinSpeed;
+            // กำหนดความเร็วการหมุนเริ่มต้น
+            rb.angularVelocity = initialRotationSpeed;
         }
     }
 
     void FixedUpdate()
     {
-        // หมุนวัตถุให้เรื่อยๆ โดยใช้ Rigidbody
+        // หมุนวัตถุตามแกน Y โดยใช้ Rigidbody
         if (rb != null)
         {
-            rb.MoveRotation(rb.rotation * Quaternion.Euler(Vector3.up * spinSpeed * Time.fixedDeltaTime));
-        }
-    }
+            // หากต้องการให้หมุนเร็วที่แน่นอน สามารถใช้ฟังก์ชัน AddTorque ได้เช่นกัน
+            // rb.AddTorque(Vector3.up * spinSpeed);
 
-    void Awake()
-    {
-        // ตั้งค่าความเร็วหมุนเริ่มต้นเมื่อเริ่มเกมใหม่
-        if (rb != null)
-        {
-            rb.angularVelocity = Random.insideUnitSphere * spinSpeed;
+            // หรือใช้ MoveRotation เพื่อหมุนวัตถุตามแกนที่กำหนด
+            Quaternion deltaRotation = Quaternion.Euler(initialRotationSpeed * Time.fixedDeltaTime);
+            rb.MoveRotation(rb.rotation * deltaRotation);
         }
     }
 }

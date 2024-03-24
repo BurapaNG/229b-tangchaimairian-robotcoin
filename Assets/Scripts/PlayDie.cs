@@ -40,7 +40,7 @@ public class PlayDie : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Amy"))
         {
-            playDie.TakeDamage(20); // ลด HP เมื่อ Player ชนกับ "Amy"
+            playDie.TakeDamage(10); // ลด HP เมื่อ Player ชนกับ "Amy"
         }
     }
 }
