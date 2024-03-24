@@ -17833,7 +17833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: 0
-  speed: 20
+  speed: 12
   jumpForce: 6
 --- !u!54 &1687312032
 Rigidbody:
