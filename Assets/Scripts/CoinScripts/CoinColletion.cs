@@ -16,13 +16,13 @@ public class CoinCollection : MonoBehaviour
             Score.text = "Coin: " + Coin;
             Destroy(other.gameObject); // ทำลายเหรียญที่เก็บได้
 
-            if (Coin >= 20 && !hasWon) // เมื่อเก็บเหรียญ 2 เหรียญ และยังไม่ชนกับวัตถุที่ชื่อ WIN
+            if (Coin >= 1 && !hasWon) // เมื่อเก็บเหรียญ 2 เหรียญ และยังไม่ชนกับวัตถุที่ชื่อ WIN
             {
                 hasWon = true;
-                EndGame("Restart"); // เรียกเมทอดจบเกมพร้อมโชว์ Scene ที่ชื่อ Restart
+                EndGame("Endcredit"); // เรียกเมทอดจบเกมพร้อมโชว์ Scene ที่ชื่อ Restart
             }
         }
-        else if (other.CompareTag("WIN") && Coin < 20) // ถ้าชนกับวัตถุที่มี Tag WIN แต่ยังไม่เก็บเหรียญครบ 2 เหรียญ
+        else if (other.CompareTag("WIN") && Coin < 1) // ถ้าชนกับวัตถุที่มี Tag WIN แต่ยังไม่เก็บเหรียญครบ 2 เหรียญ
         {
             EndGame(); // จบเกมทันที
         }
